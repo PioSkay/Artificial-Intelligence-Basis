@@ -10,10 +10,10 @@ class crossover:
     def generatePairs(self):
         pairs_array = []
         pop_size = len(self.population)
-        it = 0
-        while it < pop_size:
-            first = self.population[it]
-            self.population.pop(it)
+
+        while 0 < pop_size:
+            first = self.population[0]
+            self.population.pop(0)
             #randomly generate second index
             secondIndex = np.random.randint(0, pop_size - 1)
             second = self.population[secondIndex]
@@ -21,7 +21,6 @@ class crossover:
             pairs_array.append((first, second))
             #increase the iterators
             pop_size = pop_size - 2
-            it = it + 1
         return pairs_array
     def initCrossovered(self):
         if len(self.population) % 2 == 1:
