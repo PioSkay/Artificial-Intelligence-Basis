@@ -12,3 +12,6 @@ The algorithm uses:
 * Roulette-shell selection with scaling.
 * Single point crossover.
 * FIFO replacement strategy.
+
+### Task :three:
+Tic tac toe game using min-max with alpha-beta pruning algorithm.
