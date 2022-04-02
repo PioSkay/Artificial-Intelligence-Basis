@@ -7,7 +7,14 @@ class state(Enum):
     X = -1
     TIE = 0
     O = 1
-
+    def __str__(self):
+        match self:
+            case state.X:
+                return 'X'
+            case state.O:
+                return 'O'
+            case state.NONE:
+                return '.'
 
 class base:
     def __init__(self):

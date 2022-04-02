@@ -1,5 +1,5 @@
 from turtle import st
-from min_max import min_max
+from min_max import min_max, alg
 from base import state
 from enum import Enum
 
@@ -22,18 +22,22 @@ class game(min_max):
                 return result
             if turn == state.X:
                 if self.mode == mode.AIvsPlayerX or self.mode == mode.PlayervsPlayer:
+                    self.printBoard(turn)
                     (x, y) = self.getValidInput()
-                else:
-                    (max, x, y) = self.min(-2, 2)
                     self.board[x][y] = state.X
-                    turn = state.O
+                else:
+                    (max, x, y) = self.min_max_with_alpha_beta(-2, 2, alg.min)
+                    self.board[x][y] = state.X
+                turn = state.O
             else:
                 if self.mode == mode.AIvsPlayerO or self.mode == mode.PlayervsPlayer:
+                    self.printBoard(turn)
                     (x, y) = self.getValidInput()
-                else:
-                    (max, x, y) = self.max(-2, 2)
                     self.board[x][y] = state.O
-                    turn = state.X
+                else:
+                    (max, x, y) = self.min_max_with_alpha_beta(-2, 2)
+                    self.board[x][y] = state.O
+                turn = state.X
     def reset(self):
         self.initBoard()
 
@@ -42,6 +46,16 @@ class game(min_max):
 
     def getValidInput(self):
         while True:
-            x = int(input("Please provide X param "))
-            y = int(input("Please provide Y param "))
-            return (x, y) if self.isValid(x, y) == True else print("Invalid input!")
+            try:
+                x = int(input("Please provide X param "))
+                y = int(input("Please provide Y param "))
+            except ValueError:
+                continue
+            if self.isValid(x, y) == True:
+                return (x, y)  
+            else:
+                print("Invalid input!")
+    def printBoard(self, round):
+        print(f"Player tour: {round}")
+        for i in range(3):
+            print(f"\t{self.board[i][0]} | {self.board[i][1]} | {self.board[i][2]}")
