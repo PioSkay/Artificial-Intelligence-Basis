@@ -10,3 +10,4 @@ while True:
     else:
         break
 g_obj = game(mode(m_mode))
+print(g_obj.play().name)
