@@ -6,12 +6,15 @@ import os
 
 class DataManager:
     def __init__(self) -> None:
+        self.load_data()
         self.init_data()
 
-    def init_data(self):
+    def load_data(self):
         __dir__ = os.path.realpath(os.path.join(
             os.getcwd(), os.path.dirname(__file__)))
         self.df = pd.read_csv(__dir__ + '\Iris.csv')
+
+    def init_data(self):
         x = self.df.drop('Species', axis=1).drop('Id', axis=1)
         y = self.df['Species']
         self.trainX, self.testX, self.trainY, self.testY \
