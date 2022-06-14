@@ -1,0 +1,14 @@
+{
+    "nodes" : ["Flu", "HighFever"], "relations": {
+        "Flu": {
+            "parents": [],
+            "probabilities": { "T": 0.05, "F": 0.95}
+        }, 
+        "HighFever": {
+            "parents": ["Flu"], "probabilities": {
+                "T,T": 0.90, "T,F": 0.10,
+                "F,T": 0.20, "F,F": 0.80 
+            }
+        } 
+    }
+}

@@ -1,0 +1,20 @@
+{
+    "file_path": "flu.json",
+    "queries": [
+        {
+            "type": "markov_blanket",
+            "node": "Flu"
+        },
+        {
+            "type": "mcmc",
+            "steps": 10000,
+            "evidence": {
+                "HighFever": "T"
+            },
+            "query": ["Flu", "HighFever"]
+        },
+        {
+            "type": "debug"
+        }
+    ]
+}
