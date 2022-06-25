@@ -15,3 +15,16 @@ The algorithm uses:
 
 ### Task :three:
 Tic tac toe game using min-max with alpha-beta pruning algorithm.
+
+### Task :four:
+A program that predicts whether a packet is a DDoS attack packet or a normal packet.
+The training process contains hyperparameter optimization.
+
+### Task :five:
+Implementation of an N-layer perceptron for classification of flowers (Irises)
+
+### Task :six:
+Set up an environment using an open AI gym for ‘CarRacing-v0'. Then choose an algorithm and train the model with varying policies and compare obtained results.
+
+### Task :seven:
+Design a Bayesian network.
