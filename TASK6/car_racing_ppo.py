@@ -9,6 +9,9 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 from stable_baselines3 import PPO
 from stable_baselines3.common.vec_env import DummyVecEnv
+import shared
+
+CNN_POLICY = 'CnnPolicy'
 
 def generate_state_frame_stack_from_queue(deque):
     frame_stack = np.array(deque)
@@ -67,3 +70,16 @@ def model_check(model, env, name='', episodes=10):
     out = get_avg(results_table, 'reward')
     median = np.median([x['reward'] for x in results_table], axis=0)
     draw(to_df('episode', 'reward', results_table), 'Reward', 'Episode', f'Model: {get_file(name)}, Avg: {round(out, 3)}, Median: {round(median, 3)}')
+
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser(description='Play CarRacing by the trained model.')
+    parser.add_argument('-m', '--model', required=True, help='The `.h5` file of the trained model.')
+    args = parser.parse_args()
+    train_model = args.model
+
+    env = gym.make(shared.ENV_NAME)
+    env = DummyVecEnv([lambda: env])
+    model = PPO(CNN_POLICY, env, verbose = 1, tensorboard_log=f'{shared.PPO_SAVE_PATH}/Logs/TensorLogs')
+
+    model.load(train_model)
+    model_check(model, env, name='')

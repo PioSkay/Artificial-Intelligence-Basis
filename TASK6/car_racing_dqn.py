@@ -71,7 +71,7 @@ if __name__ == '__main__':
         time_frame_counter = 1
         
         while True:
-            #env.render()
+            env.render()
 
             current_state_frame_stack = generate_state_frame_stack_from_queue(state_frame_stack_queue)
             action = agent.get_action(current_state_frame_stack)
